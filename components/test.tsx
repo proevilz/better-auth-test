@@ -1,12 +1,17 @@
 "use client"
-import { useSession } from "@/lib/auth-client"
 
 export default function Test() {
-    const { data: session } = useSession()
-    return (
-        <div>
-            <p>This is a test component</p>
-            <pre>{JSON.stringify(session, null, 2)}</pre>
-        </div>
-    )
+	async function getData() {
+		const request = await fetch("https://localhost:444")
+		const data = await request.json()
+		console.log(data)
+		return data
+	}
+	const data = getData()
+	return (
+		<div>
+			<p>This is a test component</p>
+			<pre>{JSON.stringify(data, null, 2)}</pre>
+		</div>
+	)
 }
